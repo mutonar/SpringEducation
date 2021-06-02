@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- эта шапка для формирования Спринг объекта -->
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- прочитать файл с значениями данных для внесения в объекты-->
+    <context:property-placeholder location="classpath:animal.properties"/>
+
+    <!-- это делает объект типа Bean (хз пока для чего это)
+    id= уникальный идентификатор
+    class= полный путь до объекта
+    constructor-arg value= передача данных в конструктор
+    -->
+    <bean id="testBean"
+          class="MinoroPackage.Entities.TestBean">
+        <constructor-arg value="Neil"/>
+    </bean>
+
+    <bean id="animalBeanCat"
+          class="MinoroPackage.Entities.Cat">
+    </bean>
+
+    <bean id="animalBeanDog"
+          class="MinoroPackage.Entities.Dog">
+    </bean>
+
+    <!-- передаем в конструктор бин -->
+    <bean id="AnalizeAnimalBean"
+          class="MinoroPackage.Entities.AnalizeAnimal">
+        <constructor-arg ref="animalBeanCat"/>
+    </bean>
+
+    <!-- передаем в сетор метода снает какие вхождения на set методов , тут setAnimal
+    так же в Вес вносим в сет
+    -->
+    <bean id="AnalizeAnimalSeterBean"
+          class="MinoroPackage.Entities.AnalizeAnimal">
+        <property name ="Animal" ref="animalBeanCat"/>
+        <property name ="Weight" value="15"/>
+        <property name ="Name" value="Satona"/>
+    </bean>
+
+    <!-- все тоже самое но из фала с данными-->
+    <bean id="AnalizeAnimalSeterBeanFromFile"
+          class="MinoroPackage.Entities.AnalizeAnimal">
+        <property name ="Animal" ref="animalBeanDog"/>
+        <property name ="Name" value="${animal.name}"/>
+        <property name ="Weight" value="${animal.weight}"/>
+
+    </bean>
+</beans>
