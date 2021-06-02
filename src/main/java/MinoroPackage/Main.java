@@ -40,6 +40,8 @@ public class Main {
         System.out.println("Name From Bean: " + aAnimalSeterFromFile.getAnimalName() +
                 " Weight: " + Integer.toString(aAnimalSeterFromFile.getWeight()));   // просто вывод
 
+        aAnimalSeterFromFile.getListnameAnimal(); // Вывод листа который занесли с помощью xml конфига
+
         context1.close(); // закрываем работу с ним
 
     }
