@@ -27,8 +27,10 @@
           class="MinoroPackage.Entities.Cat">
     </bean>
 
+    <!-- scope="prototype" можно делать несколько экземпляров данного бина-->
     <bean id="animalBeanDog"
-          class="MinoroPackage.Entities.Dog">
+          class="MinoroPackage.Entities.Dog"
+          scope="prototype">
     </bean>
 
     <!-- передаем в конструктор бин -->
